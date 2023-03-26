@@ -6,14 +6,14 @@ The code from the Microsoft COCO caption evaluation repository, in the folder co
 
 SPICE evaluation uses 8GB of RAM and METEOR uses 2GB (both use Java). To limit RAM usage go to coco_caption/pycocoevalcap and meteor/meteor.py:18 or spice/spice.py:63 respectively and change the third argument of the java command.
 
-### Quick Start
+## Quick Start
 
 ```python
 pip install -r requirements.txt
 python main.py --types coco_eval # hf_eval
 ```
 
-### Results
+## Results
 
 |           | COCO_eval | HF_eval | Abs Diff |
 |-----------|-----------|---------|----------|
@@ -28,7 +28,7 @@ python main.py --types coco_eval # hf_eval
 | BertScore | -         | 0.86    | -        |
 | SenBERT   | -         | -       | -        |
 
-### I/O
+## Data I/O
 We proceed with the evaluation using the music caps dataset (eval set). You can check the `prediction` and `groundturth` data in `samples/inference_results.json`. The baseline system is the muscaps model (manco et al.).
 
 ```
@@ -42,7 +42,7 @@ We proceed with the evaluation using the music caps dataset (eval set). You can 
     }
 ```
 
-### Coco eval inputs
+## Coco eval inputs
 
 The input files can be given either as file paths (string or pathlib.Path) or lists of dicts with a dict for each row, the dicts having the column headers as keys (as given by csv.DictReader in Python). The prediction file must have the fields file_name and caption_predicted and the reference file must have the fields file_name and caption_reference_XX with XX being the two-digit index of the caption, e.g. caption_reference_01,...,caption_reference_05 with five reference captions. (we use only caption_reference_01)
 
@@ -50,8 +50,8 @@ The metric evaluation function outputs the evaluated metrics in a dict with the 
 
 ### Plan
 
-[] add bert score
-[] add sentence bert score
+- [] add bert score
+- [] add sentence bert score
 
 
 ### Reference
