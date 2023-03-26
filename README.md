@@ -1,14 +1,13 @@
 # Music captioning evaluation metrics
 
 This repository contains code to evaluate translation metrics on music captioning predictions.
-
-The code from the Microsoft COCO caption evaluation repository, in the folder coco_caption, is used to evaluate the metrics. The code has been refactored to work with Python 3 and to also evaluate the SPIDEr metric. Image-specific names and comments in-code were also changed to be audio-specific.
-
-SPICE evaluation uses 8GB of RAM and METEOR uses 2GB (both use Java). To limit RAM usage go to coco_caption/pycocoevalcap and meteor/meteor.py:18 or spice/spice.py:63 respectively and change the third argument of the java command.
+We compare [MScoco evaluate](https://github.com/tylin/coco-caption) and [huggingface evaluate](https://github.com/huggingface/evaluate).
 
 ## Quick Start
 
 ```python
+cd coco_caption
+bash get_stanford_models.sh
 pip install -r requirements.txt
 python main.py --types coco_eval # hf_eval
 ```
@@ -39,10 +38,13 @@ We proceed with the evaluation using the music caps dataset (eval set). You can 
     },
     "20":{
         ..
-    }
+    },
 ```
 
+
 ## Coco eval inputs
+
+The code from the Microsoft COCO caption evaluation repository, in the folder coco_caption, is used to evaluate the metrics. The code has been refactored to work with Python 3 and to also evaluate the SPIDEr metric. Image-specific names and comments in-code were also changed to be audio-specific. SPICE evaluation uses 8GB of RAM and METEOR uses 2GB (both use Java). To limit RAM usage go to coco_caption/pycocoevalcap and meteor/meteor.py:18 or spice/spice.py:63 respectively and change the third argument of the java command.
 
 The input files can be given either as file paths (string or pathlib.Path) or lists of dicts with a dict for each row, the dicts having the column headers as keys (as given by csv.DictReader in Python). The prediction file must have the fields file_name and caption_predicted and the reference file must have the fields file_name and caption_reference_XX with XX being the two-digit index of the caption, e.g. caption_reference_01,...,caption_reference_05 with five reference captions. (we use only caption_reference_01)
 
